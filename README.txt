@@ -1,21 +1,12 @@
-TaskFlow V6 — notification + stuck workflow prototype
+TaskFlow V2 — RBAC, User Management, History & Attachments
 
-New in V6:
-- Full Ticket timestamps: created, assigned, accepted, started, stuck, resolved, reassigned, completed.
-- TL/RTM stuck actions: Resolve or Reassign.
-- Reassign records old/new agent, time and reason.
-- Resolve notifies the original agent.
-- New assignment notifies the new agent.
-- In-app notification bell with unread badge.
-- Chrome Browser Notification permission flow using the Web Notifications API.
-- Toast + in-app notification + browser notification for task events.
-- Deadline warning under 15 minutes.
-- Demo localStorage persistence.
-
-Demo:
-TL / 1234
-RTM / 1234
-AGENT / 1234
-
-Important:
-This is still a front-end prototype. For production, replace localStorage with Supabase/Postgres + Supabase Auth + RLS + server-side user provisioning + Supabase Realtime. For notifications while the site is closed, add a service worker + Push API (Web Push) and a backend sender. Browser notifications require user permission and HTTPS in production.
+This build includes:
+- DB-driven login and role routing.
+- Logout and self-service password change for every authenticated user.
+- TL-only User Management with creation of AGENT, TL and RTM accounts.
+- TL user activation/deactivation and deletion through the protected Supabase Edge Function.
+- Ticket fields: Title, Assign to, Priority, Deadline, Description, Attachments.
+- Image attachments, external links, and pasted clipboard images (Ctrl+V / Cmd+V).
+- Ticket history timeline with creator name + role, events, assignments and comments.
+- Attachment history with uploader name + role.
+- Private Supabase Storage bucket: ticket-attachments (10 MB/file).
