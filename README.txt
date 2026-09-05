@@ -1,12 +1,10 @@
-TaskFlow V2 — RBAC, User Management, History & Attachments
+TaskFlow — Client Role + Stuck Resolution Update
 
-This build includes:
-- DB-driven login and role routing.
-- Logout and self-service password change for every authenticated user.
-- TL-only User Management with creation of AGENT, TL and RTM accounts.
-- TL user activation/deactivation and deletion through the protected Supabase Edge Function.
-- Ticket fields: Title, Assign to, Priority, Deadline, Description, Attachments.
-- Image attachments, external links, and pasted clipboard images (Ctrl+V / Cmd+V).
-- Ticket history timeline with creator name + role, events, assignments and comments.
-- Attachment history with uploader name + role.
-- Private Supabase Storage bucket: ticket-attachments (10 MB/file).
+Changes in this build:
+- Renamed the former RTM role to CLIENT in the database enum and UI.
+- TL user management now creates/edits CLIENT accounts instead of RTM accounts.
+- Updated the protected manage-taskflow-users Edge Function to accept CLIENT.
+- Added "Resolved Without Return" for TL/CLIENT when a ticket is STUCK.
+- Resolved Without Return moves the ticket to COMPLETED, records a dedicated audit event, keeps the stuck history, supports resolution attachments, and notifies the creator/assignee.
+- Existing "Resolve & Return" behavior is preserved.
+- Reassign labels no longer reference the old role name.
